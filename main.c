@@ -9,5 +9,6 @@
 
 int main(int ac, char **av)
 {
+	printf("($) ");
 	return (0);
 }
