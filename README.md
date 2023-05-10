@@ -1,1 +1,2 @@
-# simple_shell
+# simple shell
+a simple UNIX command interpreter.
