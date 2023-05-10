@@ -2,15 +2,16 @@
 
 /**
  * get_cmd - get inputed command line
+ * @input: buffer for the inputed line
  * Return: the string inputed
  */
 
-int get_cmd(char *input)
+int get_cmd(char **input)
 {
 	size_t bufsize = 0;
 	int size;
 
-	size = getline(&input, &bufsize, stdin);
+	size = getline(input, &bufsize, stdin);
 
 	return (size);
 }
@@ -20,7 +21,7 @@ int get_cmd(char *input)
  * Return: nothing
  */
 
-void shell_loop()
+void shell_loop(data *datas)
 {
 	int loop = 1, size;
 	char *input = NULL;
@@ -28,13 +29,16 @@ void shell_loop()
 	while (loop)
 	{
 		write(STDIN_FILENO, ":)$ ", 4);
-		size = get_cmd(input);
+		size = get_cmd(&input);
 
 		if (size == 0)
 		{
 			loop = 0;
 			free(input);
+			continue;
 		}
-		printf("%s", input);
+
+		printf("%s\n", input);
+		free(input);
 	}
 }

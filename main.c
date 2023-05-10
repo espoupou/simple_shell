@@ -12,6 +12,7 @@ int main(int ac, char **av)
 	(void) ac;
 	(void) av;
 
-	printf("($) ");
+	shell_loop();
+
 	return (0);
 }
