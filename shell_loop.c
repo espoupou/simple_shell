@@ -17,7 +17,24 @@ int get_cmd(char **input)
 }
 
 /**
+ * _clean - clean inputed command line
+ * @input: inputed line
+ * Return: cleaned string
+ */
+
+char *_clean(char *input)
+{
+	char *p;
+
+	for (p = input; *p != '\n'; p++)
+		;
+	*p = '\0';
+	return (input);
+}
+
+/**
  * shell_loop - the shell loop
+ * @datas: datas
  * Return: nothing
  */
 
@@ -37,8 +54,13 @@ void shell_loop(data *datas)
 			free(input);
 			continue;
 		}
+		input = _clean(input);
 
-		printf("%s\n", input);
+		datas->input = input;
+		datas->args[0] = input;
+		datas->args[1] = NULL;
+
+		_exec(datas);
 		free(input);
 	}
 }
