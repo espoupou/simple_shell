@@ -9,9 +9,11 @@
 
 int main(int ac, char **av)
 {
+	data datas;
 	(void) ac;
-	(void) av;
 
-	printf("($) ");
+	datas.av = av;
+	shell_loop(&datas);
+
 	return (0);
 }
