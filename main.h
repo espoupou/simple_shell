@@ -14,7 +14,7 @@ extern char **environ;
  * struct data - datas
  * @av: argument vector from shell
  * @input: input command
- * @arg: input command in array
+ * @args: input command in array
  * Description: we need shell program name for handling errors
  * also put input here to minimize functions parameters
  */

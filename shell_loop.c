@@ -1,3 +1,4 @@
+#include <string.h>
 #include "main.h"
 
 /**
@@ -40,8 +41,8 @@ char *_clean(char *input)
 
 void shell_loop(data *datas)
 {
-	int loop = 1, size;
-	char *input = NULL;
+	int loop = 1, size, i;
+	char *input = NULL, *token;
 
 	while (loop)
 	{
@@ -55,10 +56,19 @@ void shell_loop(data *datas)
 			continue;
 		}
 		input = _clean(input);
+		token = strtok(input, " ");
+		i = 0;
+
+		while (token != NULL && i < 2)
+		{
+			datas->args[i] = token;
+			token = strtok(NULL, " ");
+			i++;
+		}
+		datas->args[i] = NULL;
 
 		datas->input = input;
 		datas->args[0] = input;
-		datas->args[1] = NULL;
 
 		_exec(datas);
 		free(input);
