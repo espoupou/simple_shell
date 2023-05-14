@@ -35,5 +35,6 @@ void _exec(data *datas);
 
 /* utils.c */
 int _strcmp(char *s1, char *s2);
+char *_strcpy(char *dest, char *src);
 
 #endif

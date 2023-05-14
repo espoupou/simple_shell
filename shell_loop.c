@@ -55,9 +55,11 @@ void shell_loop(data *datas)
 			free(input);
 			continue;
 		}
-		datas->input = _clean(input);
+		input = _clean(input);
 
+		_strcpy(datas->input, input);
 		datas->args[0] = input;
+
 		token = strtok(datas->input, " ");
 		i = 0;
 
@@ -77,5 +79,6 @@ void shell_loop(data *datas)
 
 		_exec(datas);
 		free(input);
+		free(datas->input);
 	}
 }

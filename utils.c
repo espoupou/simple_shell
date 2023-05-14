@@ -23,3 +23,24 @@ int _strcmp(char *s1, char *s2)
 		return (-1);
 	return (0);
 }
+
+/**
+ * _strcpy - copie to dest src
+ * @dest: destination
+ * @src: source
+ * Return: point to dest
+ */
+
+char *_strcpy(char *dest, char *src)
+{
+
+	size_t i;
+
+	for (i = 0; src[i] != '\0'; i++)
+	{
+		dest[i] = src[i];
+	}
+	dest[i] = '\0';
+
+	return (dest);
+}
