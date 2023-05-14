@@ -33,4 +33,7 @@ void shell_loop(data *datas);
 /* _exec.c */
 void _exec(data *datas);
 
+/* utils.c */
+int _strcmp(char *s1, char *s2);
+
 #endif

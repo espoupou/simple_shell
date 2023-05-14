@@ -55,8 +55,10 @@ void shell_loop(data *datas)
 			free(input);
 			continue;
 		}
-		input = _clean(input);
-		token = strtok(input, " ");
+		datas->input = _clean(input);
+
+		datas->args[0] = input;
+		token = strtok(datas->input, " ");
 		i = 0;
 
 		while (token != NULL && i < 2)
@@ -67,8 +69,11 @@ void shell_loop(data *datas)
 		}
 		datas->args[i] = NULL;
 
-		datas->input = input;
-		datas->args[0] = input;
+		if (_strcmp("exit", datas->input) == 0)
+		{
+			free(input);
+			return;
+		}
 
 		_exec(datas);
 		free(input);
