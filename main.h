@@ -1,6 +1,8 @@
 #ifndef __MAIN_H__
 #define __MAIN_H__
 
+#define UNUSED(x) (void)(x)
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -51,4 +53,7 @@ int _strcmp(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
 
 /* buildin.c */
+int (*builtin_handler(char *input))(data *datas);
+int __exit(data *datas);
+
 #endif

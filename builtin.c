@@ -9,14 +9,14 @@
 int (*builtin_handler(char *input))(data *datas)
 {
 	builtin builtins[] = {
-		{"exit", _exit},
+		{"exit", __exit},
 		{NULL, NULL}
 		};
 	int i;
 
-	for (i = 0; builtin[i].name != NULL; i++)
+	for (i = 0; builtins[i].name != NULL; i++)
 	{
-		if (_strcmp(builtin[i].name, cmd) == 0)
+		if (_strcmp(builtins[i].name, input) == 0)
 			break;
 	}
 	return (builtins[i].f);
@@ -28,7 +28,8 @@ int (*builtin_handler(char *input))(data *datas)
  * Return: always 0
  */
 
-int _exit(data *datas)
+int __exit(data *datas)
 {
+	UNUSED(datas);
 	return (0);
 }
