@@ -18,12 +18,25 @@ extern char **environ;
  * Description: we need shell program name for handling errors
  * also put input here to minimize functions parameters
  */
+
 typedef struct data
 {
 	char **av;
 	char *input;
 	char *args[2];
 } data;
+
+/**
+ * struct builtin - Builtins
+ * @name: name of builtin
+ * @f: function associed
+ */
+
+typedef struct builtin
+{
+	char *name;
+	int (*f)(data *datas);
+} builtin;
 
 /* shell_loop.c */
 int get_cmd(char **input);
@@ -37,4 +50,5 @@ int _exec(data *datas);
 int _strcmp(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
 
+/* buildin.c */
 #endif
