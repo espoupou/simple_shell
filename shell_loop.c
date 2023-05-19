@@ -30,6 +30,7 @@ char *_clean(char *input)
 	for (p = input; *p != '\n'; p++)
 		;
 	*p = '\0';
+
 	return (input);
 }
 
@@ -42,11 +43,13 @@ char *_clean(char *input)
 void shell_loop(data *datas)
 {
 	int loop = 1, size, i;
-	char *input = NULL, *token;
+	char *input = NULL;
+	char *token;
 
 	while (loop)
 	{
 		write(STDIN_FILENO, ":)$ ", 4);
+		input = NULL;
 		size = get_cmd(&input);
 
 		if (size == 0)
@@ -57,7 +60,7 @@ void shell_loop(data *datas)
 		}
 		input = _clean(input);
 
-		_strcpy(datas->input, input);
+		datas->input = input;
 		datas->args[0] = input;
 
 		token = strtok(datas->input, " ");
@@ -74,11 +77,10 @@ void shell_loop(data *datas)
 		if (_strcmp("exit", datas->input) == 0)
 		{
 			free(input);
-			return;
+			loop = 0;
+			break;
 		}
-
 		_exec(datas);
 		free(input);
-		free(datas->input);
 	}
 }
