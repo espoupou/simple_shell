@@ -55,5 +55,6 @@ char *_strcpy(char *dest, char *src);
 /* buildin.c */
 int (*builtin_handler(char *input))(data *datas);
 int __exit(data *datas);
+int __env(data *datas);
 
 #endif

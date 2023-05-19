@@ -10,7 +10,7 @@ int _exec(data *datas)
 {
 	pid_t pid;
 	int state;
-	char *environ[] = { NULL };
+/*	char *environ[] = { NULL }; */
 
 	pid = fork();
 	if (pid == 0)

@@ -10,6 +10,7 @@ int (*builtin_handler(char *input))(data *datas)
 {
 	builtin builtins[] = {
 		{"exit", __exit},
+		{"env", __env},
 		{NULL, NULL}
 		};
 	int i;
@@ -32,4 +33,28 @@ int __exit(data *datas)
 {
 	UNUSED(datas);
 	return (0);
+}
+
+/**
+ * __env - print environment
+ * @datas: datas
+ * Return: always 1
+ */
+
+int __env(data *datas)
+{
+	int i, len;
+
+	UNUSED(datas);
+	for (i = 0; environ[i]; i++)
+	{
+
+		for (len = 0; environ[i][len]; len++)
+			;
+
+		write(STDOUT_FILENO, environ[i], len);
+		write(STDOUT_FILENO, "\n", 1);
+	}
+
+	return (1);
 }
