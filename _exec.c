@@ -6,7 +6,7 @@
  * Return: nothing
  */
 
-void _exec(data *datas)
+int _exec(data *datas)
 {
 	pid_t pid;
 	int state;
@@ -17,6 +17,7 @@ void _exec(data *datas)
 	{
 		execve(datas->input, datas->args, environ);
 		perror(datas->av[0]);
+		exit(0);
 	}
 	else if (pid < 0)
 	{
@@ -24,6 +25,10 @@ void _exec(data *datas)
 	}
 	else
 	{
-		waitpid(pid, &state, 0);
+		do {
+			waitpid(pid, &state, WUNTRACED);
+		} while (!WIFEXITED(state) && !WIFSIGNALED(state));
 	}
+
+	return (1);
 }

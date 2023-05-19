@@ -31,6 +31,10 @@ char *_clean(char *input);
 void shell_loop(data *datas);
 
 /* _exec.c */
-void _exec(data *datas);
+int _exec(data *datas);
+
+/* utils.c */
+int _strcmp(char *s1, char *s2);
+char *_strcpy(char *dest, char *src);
 
 #endif
