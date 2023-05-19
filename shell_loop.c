@@ -43,6 +43,7 @@ char *_clean(char *input)
 void shell_loop(data *datas)
 {
 	int loop = 1, size, i;
+	int (*f)(data *datas);
 	char *input = NULL;
 	char *token;
 
@@ -74,13 +75,12 @@ void shell_loop(data *datas)
 		}
 		datas->args[i] = NULL;
 
-		if (_strcmp("exit", datas->input) == 0)
-		{
-			free(input);
-			loop = 0;
-			break;
-		}
-		_exec(datas);
+		f = builtin_handler(datas->args[0]);
+		if (f)
+			loop = f(datas);
+		else
+			loop = _exec(datas);
+
 		free(input);
 	}
 }
