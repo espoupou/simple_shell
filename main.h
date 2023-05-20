@@ -43,6 +43,7 @@ typedef struct builtin
 /* shell_loop.c */
 int get_cmd(char **input);
 char *_clean(char *input);
+void parse_args(char *input, data *datas);
 void shell_loop(data *datas);
 
 /* _exec.c */

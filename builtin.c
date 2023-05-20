@@ -24,7 +24,7 @@ int (*builtin_handler(char *input))(data *datas)
 }
 
 /**
- * _exit - exit the program
+ * __exit - exit the program
  * @datas: datas
  * Return: always 0
  */
