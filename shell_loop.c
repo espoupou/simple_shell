@@ -50,8 +50,8 @@ void shell_loop(data *datas)
 	{
 		write(STDIN_FILENO, ":)$ ", 4);
 		input = NULL;
-		size = get_cmd(&input);
-
+		/* size = get_cmd(&input); */
+		size = _getline(input);
 		if (size == 0)
 		{
 			loop = 0;
