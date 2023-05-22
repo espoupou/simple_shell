@@ -26,9 +26,9 @@ int get_cmd(char **input)
 char *_clean(char *input)
 {
 	char *p;
-	printf("%s\n", input);
+
 	for (p = input; *p != '\n' && *p != '\0'; p++)
-		printf("%c\n", *p);
+		;
 	*p = '\0';
 
 	return (input);
