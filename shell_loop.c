@@ -1,5 +1,5 @@
-#include <string.h>
 #include "main.h"
+#include <string.h>
 
 /**
  * get_cmd - get inputed command line
@@ -26,9 +26,9 @@ int get_cmd(char **input)
 char *_clean(char *input)
 {
 	char *p;
-
-	for (p = input; *p != '\n'; p++)
-		;
+	printf("%s\n", input);
+	for (p = input; *p != '\n' && *p != '\0'; p++)
+		printf("%c\n", *p);
 	*p = '\0';
 
 	return (input);
@@ -49,18 +49,19 @@ void shell_loop(data *datas)
 	while (loop)
 	{
 		write(STDIN_FILENO, ":)$ ", 4);
-		input = NULL;
+
 		/* size = get_cmd(&input); */
-		size = _getline(input);
+		size = _getline(datas);
 		if (size == 0)
 		{
 			loop = 0;
-			free(input);
+			free(datas->input);
 			continue;
 		}
-		input = _clean(input);
 
-		datas->input = input;
+		input = _clean(datas->input);
+
+/*		datas->input = input; */
 		datas->args[0] = input;
 
 		token = strtok(datas->input, " ");

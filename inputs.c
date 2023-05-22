@@ -6,20 +6,18 @@
  * Return: the size
  */
 
-int _getline(char *input)
+int _getline(data *datas)
 {
 	char c = '\0', *q;
 	int i = 0;
 	ssize_t size;
-write(STDOUT_FILENO, " - tch \n", 8);
-	input = malloc(sizeof(char) * 256);
-write(STDOUT_FILENO, " - tch checking if NULL ...\n", 8);
-	if (input == NULL)
+
+	datas->input = malloc(sizeof(char) * 256);
+	if (datas->input == NULL)
 		return (0);
-write(STDOUT_FILENO, " - tch input not NULL \n", 8);
+
 	while (c != '\n' && c != EOF)
 	{
-write(STDOUT_FILENO, " - tch \n", 8);
 		size = read(STDIN_FILENO, &c, 1);
 		if (size == 0)
 		{
@@ -29,20 +27,21 @@ write(STDOUT_FILENO, " - tch \n", 8);
 
 		if (i > 255)
 		{
-			/* realloc */
+			/* realloc space */
 			q = malloc(sizeof(char) * (i + 1)); /* the new char and \0 */
 			if (q == NULL)
 				return (0);
 
-			q = _strncpy(q, input, i);
-			free(input);
+			q = _strncpy(q, datas->input, i);
+			free(datas->input);
 
-			input = q;
+			datas->input = q;
 		}
-		input[i] = c;
+
+		*(datas->input + i) = c;
 		i++;
 	}
-	input[i] = '\0';
+	*(datas->input + i) = '\0';
 
 	return (i + 1);
 }
