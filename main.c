@@ -13,6 +13,7 @@ int main(int ac, char **av)
 	(void) ac;
 
 	datas.av = av;
+
 	shell_loop(&datas);
 
 	return (0);

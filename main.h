@@ -52,6 +52,11 @@ int _exec(data *datas);
 /* utils.c */
 int _strcmp(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
+int _putchar(char c);
+char *_strncpy(char *dest, char *src, int n);
+
+/* inputs.c */
+int _getline(data *datas);
 
 /* buildin.c */
 int (*builtin_handler(char *input))(data *datas);
