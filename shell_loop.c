@@ -35,6 +35,42 @@ char *_clean(char *input)
 }
 
 /**
+ * parse_args - parses user input and handles command line arguments
+ * @input: contains line to be parsed
+ * @datas: datas
+ * Return: nothing
+ */
+
+void parse_args(char *input, data *datas)
+{
+	int i;
+	char *arg_start, *arg_end;
+
+	datas->input = input;
+	datas->args[0] = input;
+
+	arg_start = input;
+	i = 0;
+
+	while (*arg_start != '\0' && i < 2)
+	{
+		arg_start += strspn(arg_start, " \t");
+		arg_end = strchr(arg_start, ' ');
+
+		if (arg_end == NULL)
+			arg_end = arg_start + strlen(arg_start);
+
+		memcpy(datas->args[i], arg_start, arg_end - arg_start);
+		datas->args[i][arg_end - arg_start] = '\0';
+
+		arg_start = arg_end + strspn(arg_end, " \t");
+		i++;
+	}
+
+	datas->args[i] = NULL;
+}
+
+/**
  * shell_loop - the shell loop
  * @datas: datas
  * Return: nothing
@@ -43,6 +79,7 @@ char *_clean(char *input)
 void shell_loop(data *datas)
 {
 	int loop = 1, size, i;
+	int (*f)(data *datas);
 	char *input = NULL;
 	char *token;
 
@@ -59,29 +96,23 @@ void shell_loop(data *datas)
 			continue;
 		}
 
+/*
 		input = _clean(datas->input);
 
-/*		datas->input = input; */
+		datas->input = input;
 		datas->args[0] = input;
 
 		token = strtok(datas->input, " ");
-		i = 0;
+		i = 0; */
+    
+		parse_args(input, datas);
 
-		while (token != NULL && i < 2)
-		{
-			datas->args[i] = token;
-			token = strtok(NULL, " ");
-			i++;
-		}
-		datas->args[i] = NULL;
+		f = builtin_handler(datas->args[0]);
+		if (f)
+			loop = f(datas);
+		else
+			loop = _exec(datas);
 
-		if (_strcmp("exit", datas->input) == 0)
-		{
-			free(input);
-			loop = 0;
-			break;
-		}
-		_exec(datas);
 		free(input);
 	}
 }

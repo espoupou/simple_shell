@@ -1,6 +1,8 @@
 #ifndef __MAIN_H__
 #define __MAIN_H__
 
+#define UNUSED(x) (void)(x)
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -18,6 +20,7 @@ extern char **environ;
  * Description: we need shell program name for handling errors
  * also put input here to minimize functions parameters
  */
+
 typedef struct data
 {
 	char **av;
@@ -25,9 +28,22 @@ typedef struct data
 	char *args[2];
 } data;
 
+/**
+ * struct builtin - Builtins
+ * @name: name of builtin
+ * @f: function associed
+ */
+
+typedef struct builtin
+{
+	char *name;
+	int (*f)(data *datas);
+} builtin;
+
 /* shell_loop.c */
 int get_cmd(char **input);
 char *_clean(char *input);
+void parse_args(char *input, data *datas);
 void shell_loop(data *datas);
 
 /* _exec.c */
@@ -41,5 +57,10 @@ char *_strncpy(char *dest, char *src, int n);
 
 /* inputs.c */
 int _getline(data *datas);
+
+/* buildin.c */
+int (*builtin_handler(char *input))(data *datas);
+int __exit(data *datas);
+int __env(data *datas);
 
 #endif
