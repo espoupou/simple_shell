@@ -15,7 +15,7 @@ int _exec(data *datas)
 	pid = fork();
 	if (pid == 0)
 	{
-		execve(datas->input, datas->args, environ);
+		execve(datas->args[0], datas->args, environ);
 		perror(datas->av[0]);
 		exit(0);
 	}
