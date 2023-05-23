@@ -25,7 +25,8 @@ typedef struct data
 {
 	char **av;
 	char *input;
-	char *args[2];
+	char **args;
+	char **environ;
 } data;
 
 /**
@@ -43,7 +44,7 @@ typedef struct builtin
 /* shell_loop.c */
 int get_cmd(char **input);
 char *_clean(char *input);
-void parse_args(char *input, data *datas);
+int parse_args(char *input, data *datas);
 void shell_loop(data *datas);
 
 /* _exec.c */
@@ -54,6 +55,13 @@ int _strcmp(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
 int _putchar(char c);
 char *_strncpy(char *dest, char *src, int n);
+char *_strcat(char *dest, char *src);
+
+/* char_utils.c */
+int _strlen(char *s);
+
+/* mem_utils.c */
+char **realloc_da(char **p, int old_size, int new_size);
 
 /* inputs.c */
 int _getline(data *datas);
@@ -62,5 +70,10 @@ int _getline(data *datas);
 int (*builtin_handler(char *input))(data *datas);
 int __exit(data *datas);
 int __env(data *datas);
+
+/* env.c */
+void init_env(data *datas);
+int __setenv(data *datas);
+char *cat_keyval(char *env, char *key, char *val);
 
 #endif

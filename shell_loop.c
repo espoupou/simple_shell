@@ -38,21 +38,21 @@ char *_clean(char *input)
  * parse_args - parses user input and handles command line arguments
  * @input: contains line to be parsed
  * @datas: datas
- * Return: nothing
+ * Return: status 0 or 1
  */
 
-void parse_args(char *input, data *datas)
+int parse_args(char *input, data *datas)
 {
 	int i;
 	char *arg_start, *arg_end;
 
 	datas->input = input;
+	datas->args = malloc(sizeof(char *)); /* end array value space : NULL space */
 	datas->args[0] = input;
 
 	arg_start = input;
 	i = 0;
-
-	while (*arg_start != '\0' && i < 2)
+	while (*arg_start != '\0')
 	{
 		arg_start += strspn(arg_start, " \t");
 		arg_end = strchr(arg_start, ' ');
@@ -60,14 +60,24 @@ void parse_args(char *input, data *datas)
 		if (arg_end == NULL)
 			arg_end = arg_start + strlen(arg_start);
 
-		memcpy(datas->args[i], arg_start, arg_end - arg_start);
-		datas->args[i][arg_end - arg_start] = '\0';
+		datas->args = realloc_da(datas->args, (i + 1), (i + 2));
+		if (datas->args == NULL)
+			return (0);
 
+		datas->args[i] = malloc(sizeof(char) * (arg_end - arg_start));
+		memcpy(datas->args[i], arg_start, arg_end - arg_start);
+
+		datas->args[i][arg_end - arg_start] = '\0';
 		arg_start = arg_end + strspn(arg_end, " \t");
 		i++;
 	}
 
 	datas->args[i] = NULL;
+
+/*	for (--i; i + 1; i--)
+		printf("%s:\n", datas->args[i]);
+*/
+	return (1);
 }
 
 /**
@@ -105,7 +115,12 @@ void shell_loop(data *datas)
 		token = strtok(datas->input, " ");
 		i = 0; */
 
-		parse_args(input, datas);
+		loop = parse_args(input, datas);
+		if (loop == 0)
+		{
+			free(input);
+			continue;
+		}
 		f = builtin_handler(datas->args[0]);
 		if (f)
 			loop = f(datas);
