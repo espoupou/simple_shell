@@ -17,6 +17,8 @@ extern char **environ;
  * @av: argument vector from shell
  * @input: input command
  * @args: input command in array
+ * @environ: env variable
+ * @envsize: @environ size
  * Description: we need shell program name for handling errors
  * also put input here to minimize functions parameters
  */
@@ -27,6 +29,7 @@ typedef struct data
 	char *input;
 	char **args;
 	char **environ;
+	int envsize;
 } data;
 
 /**
@@ -74,6 +77,7 @@ int __env(data *datas);
 /* env.c */
 void init_env(data *datas);
 int __setenv(data *datas);
+int __unsetenv(data *datas);
 char *cat_keyval(char *key, char *val);
 
 #endif
