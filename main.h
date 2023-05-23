@@ -50,34 +50,34 @@ char *_clean(char *input);
 int parse_args(char *input, data *datas);
 void shell_loop(data *datas);
 
-/* _exec.c */
+/* _exec.c: execution heart */
 int _exec(data *datas);
 
-/* utils.c */
+/* utils.c: utilities */
+int _putchar(char c);
+char *cat_keyval(char *key, char *val);
+
+/* char_utils.c: char functions utilities */
+int _strlen(char *s);
 int _strcmp(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
-int _putchar(char c);
 char *_strncpy(char *dest, char *src, int n);
 char *_strcat(char *dest, char *src);
 
-/* char_utils.c */
-int _strlen(char *s);
-
-/* mem_utils.c */
+/* mem_utils.c: memory manipulation utilities */
 char **realloc_da(char **p, int old_size, int new_size);
 
-/* inputs.c */
+/* inputs.c: get user input utilities */
 int _getline(data *datas);
 
-/* buildin.c */
+/* buildin.c: buildin functions - extend to env.c */
 int (*builtin_handler(char *input))(data *datas);
 int __exit(data *datas);
-int __env(data *datas);
 
-/* env.c */
+/* env.c: buildin env functions */
 void init_env(data *datas);
+int __env(data *datas);
 int __setenv(data *datas);
 int __unsetenv(data *datas);
-char *cat_keyval(char *key, char *val);
 
 #endif
