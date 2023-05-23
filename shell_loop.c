@@ -78,10 +78,10 @@ void parse_args(char *input, data *datas)
 
 void shell_loop(data *datas)
 {
-	int loop = 1, size, i;
+	int loop = 1, size; /* , i; */
 	int (*f)(data *datas);
 	char *input = NULL;
-	char *token;
+/*	char *token; */
 
 	while (loop)
 	{
@@ -89,6 +89,7 @@ void shell_loop(data *datas)
 
 		/* size = get_cmd(&input); */
 		size = _getline(datas);
+
 		if (size == 0)
 		{
 			loop = 0;
@@ -96,17 +97,15 @@ void shell_loop(data *datas)
 			continue;
 		}
 
-/*
 		input = _clean(datas->input);
-
+/*
 		datas->input = input;
 		datas->args[0] = input;
 
 		token = strtok(datas->input, " ");
 		i = 0; */
-    
-		parse_args(input, datas);
 
+		parse_args(input, datas);
 		f = builtin_handler(datas->args[0]);
 		if (f)
 			loop = f(datas);
