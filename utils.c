@@ -31,3 +31,38 @@ char *cat_keyval(char *key, char *val)
 
 	return (env);
 }
+
+/**
+ * _setenv - get env val pointer by key
+ * @key: the key
+ * @val: the val
+ * Return: o if not the key and val position if is key
+ */
+
+void _setenv(data *datas, char *key, char *val)
+{
+	char *var;
+	int i;
+
+	for (i = 0; datas->environ[i]; i++)
+	{
+		var = malloc(sizeof(char) * (_strlen(datas->environ[i]) + 1));
+		_strcpy(var, datas->environ[i]);
+
+		if (_strcmp(strtok(var, "="), key) == 0)
+		{
+			free(datas->environ[i]);
+			datas->environ[i] = cat_keyval(key, val);
+			datas->envsize += 1;
+
+			free(var);
+			return ;
+		}
+		free(var);
+	}
+
+	datas->environ = realloc_da(datas->environ, i, i+2);
+	datas->environ[i] = cat_keyval(key, val);
+	datas->environ[i + 1] = NULL;
+	datas->envsize += 1;
+}

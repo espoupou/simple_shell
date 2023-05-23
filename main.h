@@ -8,6 +8,10 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <limits.h>
+
+/* temporar include */
+#include <string.h>
 
 /* Poinngs called the "environment" */
 extern char **environ;
@@ -56,6 +60,7 @@ int _exec(data *datas);
 /* utils.c: utilities */
 int _putchar(char c);
 char *cat_keyval(char *key, char *val);
+void _setenv(data *datas, char *key, char *val);
 
 /* char_utils.c: char functions utilities */
 int _strlen(char *s);
@@ -64,13 +69,16 @@ char *_strcpy(char *dest, char *src);
 char *_strncpy(char *dest, char *src, int n);
 char *_strcat(char *dest, char *src);
 
+/* char_utilis_1.c: */
+char *_strdup(char *s);
+
 /* mem_utils.c: memory manipulation utilities */
 char **realloc_da(char **p, int old_size, int new_size);
 
 /* inputs.c: get user input utilities */
 int _getline(data *datas);
 
-/* buildin.c: buildin functions - extend to env.c */
+/* buildin.c: buildin functions - extend to env.c, cd.c */
 int (*builtin_handler(char *input))(data *datas);
 int __exit(data *datas);
 
@@ -79,5 +87,10 @@ void init_env(data *datas);
 int __env(data *datas);
 int __setenv(data *datas);
 int __unsetenv(data *datas);
+char *_getenv(char *key, data *datas);
+
+/* cd.c: buidin cd functions */
+int __cd(data *datas);
+void cd_home(data *datas);
 
 #endif

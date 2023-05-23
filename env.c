@@ -1,5 +1,4 @@
 #include "main.h"
-#include <string.h>
 
 /**
  * init_env - iniitialize env in datas
@@ -59,36 +58,13 @@ int __env(data *datas)
 
 int __setenv(data *datas)
 {
-	int i;
-	char *var;
-
 	if (datas->args[1] == NULL || datas->args[2] == NULL)
 	{
 		printf("err setenv\n");
 		return (1);
 	}
 
-	for (i = 0; datas->environ[i]; i++)
-	{
-		var = malloc(sizeof(char) * (_strlen(datas->environ[i]) + 1));
-		_strcpy(var, datas->environ[i]);
-
-		if (_strcmp(strtok(var, "="), datas->args[1]) == 0)
-		{
-			free(datas->environ[i]);
-			datas->environ[i] = cat_keyval(datas->args[1], datas->args[2]);
-			datas->envsize += 1;
-
-			free(var);
-			return (1);
-		}
-		free(var);
-	}
-
-	datas->environ = realloc_da(datas->environ, i, i+2);
-	datas->environ[i] = cat_keyval(datas->args[1], datas->args[2]);
-	datas->environ[i + 1] = NULL;
-	datas->envsize += 1;
+	_setenv(datas, datas->args[1], datas->args[2]);
 	return (1);
 }
 
@@ -143,4 +119,36 @@ int __unsetenv(data *datas)
 
 	printf("err unsetenv\n");
 	return (1);
+}
+
+/**
+ * _getenv - get env val by key
+ * @key: the key
+ * @datas: datas
+ * Return: value pointer
+ */
+
+char *_getenv(char *key, data *datas)
+{
+	int i, j;
+
+	for (i = 0; datas->environ[i]; i++)
+	{
+		/* compare name and key */
+		for (j = 0; datas->environ[i][j] != '='; j++)
+		{
+			if (datas->environ[i][j] != key[j])
+			{
+				j = 0;
+				break;
+			}
+		}
+
+		if (j == 0)
+			continue;
+
+		j++; /* skip the equal sign */
+		return (datas->environ[i] + j);
+	}
+	return NULL;
 }

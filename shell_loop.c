@@ -1,5 +1,4 @@
 #include "main.h"
-#include <string.h>
 
 /**
  * get_cmd - get inputed command line

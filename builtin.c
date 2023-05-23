@@ -13,6 +13,7 @@ int (*builtin_handler(char *input))(data *datas)
 		{"env", __env},
 		{"setenv", __setenv},
 		{"unsetenv", __unsetenv},
+		{"cd", __cd},
 		{NULL, NULL}
 		};
 	int i;
