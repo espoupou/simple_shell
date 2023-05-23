@@ -46,9 +46,10 @@ int __setenv(data *datas)
 
 		if (_strcmp(strtok(var, "="), datas->args[1]) == 0)
 		{
-			printf("modify");
+			printf("modify\n");
 			free(datas->environ[i]);
-			cat_keyval(datas->environ[i], datas->args[1], datas->args[2]);
+			datas->environ[i] = cat_keyval(datas->args[1], datas->args[2]);
+
 			free(var);
 			return (1);
 		}
@@ -56,25 +57,29 @@ int __setenv(data *datas)
 	}
 
 	datas->environ = realloc_da(datas->environ, i, i+2);
-	cat_keyval(datas->environ[i], datas->args[1], datas->args[2]);
+	datas->environ[i] = cat_keyval(datas->args[1], datas->args[2]);
 	datas->environ[i + 1] = NULL;
 	return (1);
 }
 
 /**
  * cat_keyenv - create env string "key=val"
- * @env: env var pointerr
+ * @env: env var pointer
  * @key: key
  * @val: value
  * Return: pointer to string
  */
 
-char *cat_keyval(char *env, char *key, char *val)
+char *cat_keyval(char *key, char *val)
 {
+	char *env;
+
 	env = malloc(sizeof(char) * (_strlen(key) + _strlen(val) + 2));
 	_strcpy(env, key);
 	_strcat(env, "=");
 	_strcat(env, val);
+	_strcat(env, "\0");
+printf("%s:\n", env);
 	return (env);
 }
 

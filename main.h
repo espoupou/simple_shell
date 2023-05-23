@@ -74,6 +74,6 @@ int __env(data *datas);
 /* env.c */
 void init_env(data *datas);
 int __setenv(data *datas);
-char *cat_keyval(char *env, char *key, char *val);
+char *cat_keyval(char *key, char *val);
 
 #endif
