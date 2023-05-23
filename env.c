@@ -28,6 +28,30 @@ void init_env(data *datas)
 }
 
 /**
+ * __env - print environment
+ * @datas: datas
+ * Return: always 1
+ */
+
+int __env(data *datas)
+{
+	int i, len;
+
+/*	UNUSED(datas); */
+	for (i = 0; datas->environ[i]; i++)
+	{
+
+		for (len = 0; datas->environ[i][len]; len++)
+			;
+
+		write(STDOUT_FILENO, datas->environ[i], _strlen(datas->environ[i]));
+		write(STDOUT_FILENO, "\n", 1);
+	}
+
+	return (1);
+}
+
+/**
  * __setenv - set env var
  * @datas: datas
  * Return: status 0 or 1
@@ -66,27 +90,6 @@ int __setenv(data *datas)
 	datas->environ[i + 1] = NULL;
 	datas->envsize += 1;
 	return (1);
-}
-
-/**
- * cat_keyenv - create env string "key=val"
- * @env: env var pointer
- * @key: key
- * @val: value
- * Return: pointer to string
- */
-
-char *cat_keyval(char *key, char *val)
-{
-	char *env;
-
-	env = malloc(sizeof(char) * (_strlen(key) + _strlen(val) + 2));
-	_strcpy(env, key);
-	_strcat(env, "=");
-	_strcat(env, val);
-	_strcat(env, "\0");
-
-	return (env);
 }
 
 /**
