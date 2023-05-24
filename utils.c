@@ -49,7 +49,7 @@ void _setenv(data *datas, char *key, char *val)
 		var = malloc(sizeof(char) * (_strlen(datas->environ[i]) + 1));
 		_strcpy(var, datas->environ[i]);
 
-		if (_strcmp(strtok(var, "="), key) == 0)
+		if (_strcmp(_strtok(var, "="), key) == 0)
 		{
 			free(datas->environ[i]);
 			datas->environ[i] = cat_keyval(key, val);
