@@ -61,6 +61,7 @@ int _exec(data *datas);
 int _putchar(char c);
 char *cat_keyval(char *key, char *val);
 void _setenv(data *datas, char *key, char *val);
+void rev_str(char *s);
 
 /* char_utils.c: char functions utilities */
 int _strlen(char *s);

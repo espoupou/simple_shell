@@ -20,7 +20,7 @@ int __cd(data *datas)
 		return (1);
 	}
 
-	if (_strcmp(datas->args[1], ".") == 0 || _strcmp(datas->args[1], ".."))
+	if (_strcmp(datas->args[1], ".") == 0 || _strcmp(datas->args[1], "..") == 0)
 	{
 		cd_dot(datas);
 		return (1);
@@ -97,5 +97,38 @@ void cd_prev(data *datas)
 
 void cd_dot(data *datas)
 {
-	UNUSED(datas);
+	char pwd[PATH_MAX];
+	char *_pwd, *p, *parent;
+
+	getcwd(pwd, sizeof(pwd));
+	_pwd = _strdup(pwd);
+	_setenv(datas, "OLDPWD", _pwd);
+
+	if (_strcmp(datas->args[1], ".") == 0)
+	{
+		_setenv(datas, "PWD", pwd);
+		return;
+	}
+
+	if (_strcmp(_pwd, "/") == 0)
+		return;
+
+	p = _pwd;
+	rev_str(p);
+
+	if (strtok(p, "/") != NULL)
+	{
+		parent = strtok(NULL, "\0");
+		if (parent != NULL)
+		{
+			rev_str(parent);
+			chdir(parent);
+			_setenv(datas, "PWD", parent);
+			free(_pwd);
+			return;
+		}
+	}
+	chdir("/");
+	_setenv(datas, "PWD", "/");
+	free(_pwd);
 }
