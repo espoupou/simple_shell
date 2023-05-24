@@ -13,6 +13,10 @@ int __cd(data *datas)
 		cd_home(datas);
 	}
 
+	if (_strcmp(datas->args[1], "-") == 0)
+	{
+		cd_prev(datas);
+	}
 	return (1);
 }
 
@@ -42,4 +46,36 @@ void cd_home(data *datas)
 	}
 	_setenv(datas, "OLDPWD", pwd);
 	_setenv(datas, "PWD", home);
+}
+
+/**
+ * cd_prev ) cd to previous directory
+ * @datas: datas
+ * Return : nothing
+ */
+
+void cd_prev(data *datas)
+{
+	char pwd[PATH_MAX], *oldpwd;
+
+	getcwd(pwd, sizeof(pwd));
+
+	oldpwd = _strdup(_getenv("OLDPWD", datas));
+	if (oldpwd == NULL)
+		oldpwd = pwd;
+
+	_setenv(datas, "OLDPWD", pwd);
+
+	if (chdir(oldpwd) == -1)
+	{
+		_setenv(datas, "PWD", pwd);
+		write(STDOUT_FILENO, pwd, _strlen(pwd));
+	}
+	else
+	{
+		_setenv(datas, "PWD", oldpwd);
+		write(STDOUT_FILENO, oldpwd, _strlen(oldpwd));
+	}
+
+	write(STDOUT_FILENO, "\n", 1);
 }

@@ -92,5 +92,6 @@ char *_getenv(char *key, data *datas);
 /* cd.c: buidin cd functions */
 int __cd(data *datas);
 void cd_home(data *datas);
+void cd_prev(data *datas);
 
 #endif
