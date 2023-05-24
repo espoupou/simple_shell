@@ -86,7 +86,7 @@ int __unsetenv(data *datas)
 	{
 		var = malloc(sizeof(char) * (_strlen(datas->environ[i]) + 1));
 		_strcpy(var, datas->environ[i]);
-		if (_strcmp(strtok(var, "="), datas->args[1]) == 0)
+		if (_strcmp(_strtok(var, "="), datas->args[1]) == 0)
 		{
 			free(var);
 			env = malloc(sizeof(char *) * datas->envsize - 1);
