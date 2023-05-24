@@ -116,9 +116,9 @@ void cd_dot(data *datas)
 	p = _pwd;
 	rev_str(p);
 
-	if (strtok(p, "/") != NULL)
+	if (_strtok(p, "/") != NULL)
 	{
-		parent = strtok(NULL, "\0");
+		parent = _strtok(NULL, "\0");
 		if (parent != NULL)
 		{
 			rev_str(parent);
