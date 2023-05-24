@@ -1,22 +1,6 @@
 #include "main.h"
 
 /**
- * get_cmd - get inputed command line
- * @input: buffer for the inputed line
- * Return: the string inputed
- */
-
-int get_cmd(char **input)
-{
-	size_t bufsize = 0;
-	int size;
-
-	size = getline(input, &bufsize, stdin);
-
-	return (size);
-}
-
-/**
  * _clean - clean inputed command line
  * @input: inputed line
  * Return: cleaned string

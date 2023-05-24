@@ -46,7 +46,6 @@ typedef struct builtin
 } builtin;
 
 /* shell_loop.c */
-int get_cmd(char **input);
 char *_clean(char *input);
 int parse_args(char *input, data *datas);
 void shell_loop(data *datas);
@@ -69,9 +68,13 @@ char *_strcat(char *dest, char *src);
 
 /* char_utilis_1.c: */
 char *_strdup(char *s);
+char *_strtok(char str[], const char *delim);
+char *_strchr(char *s, char c);
+unsigned int _strspn(char *s, char *accept);
 
 /* mem_utils.c: memory manipulation utilities */
 char **realloc_da(char **p, int old_size, int new_size);
+char *_memcpy(char *dest, char *src, unsigned int n);
 
 /* inputs.c: get user input utilities */
 int _getline(data *datas);
