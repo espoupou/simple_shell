@@ -10,9 +10,6 @@
 #include <sys/wait.h>
 #include <limits.h>
 
-/* temporar include */
-#include <string.h>
-
 /* Poinngs called the "environment" */
 extern char **environ;
 
