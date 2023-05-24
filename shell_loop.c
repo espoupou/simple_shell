@@ -67,7 +67,7 @@ int parse_args(char *input, data *datas)
 			return (0);
 
 		datas->args[i] = malloc(sizeof(char) * (arg_end - arg_start));
-		memcpy(datas->args[i], arg_start, arg_end - arg_start);
+		_memcpy(datas->args[i], arg_start, arg_end - arg_start);
 
 		datas->args[i][arg_end - arg_start] = '\0';
 		arg_start = arg_end + _strspn(arg_end, " \t");
