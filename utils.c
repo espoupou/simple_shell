@@ -12,8 +12,7 @@ int _putchar(char c)
 }
 
 /**
- * cat_keyenv - create env string "key=val"
- * @env: env var pointer
+ * cat_keyval - create env string "key=val"
  * @key: key
  * @val: value
  * Return: pointer to string
@@ -30,4 +29,65 @@ char *cat_keyval(char *key, char *val)
 	_strcat(env, "\0");
 
 	return (env);
+}
+
+/**
+ * _setenv - get env val pointer by key
+ * @datas: datas
+ * @key: the key
+ * @val: the val
+ * Return: o if not the key and val position if is key
+ */
+
+void _setenv(data *datas, char *key, char *val)
+{
+	char *var;
+	int i;
+
+	for (i = 0; datas->environ[i]; i++)
+	{
+		var = malloc(sizeof(char) * (_strlen(datas->environ[i]) + 1));
+		_strcpy(var, datas->environ[i]);
+
+		if (_strcmp(strtok(var, "="), key) == 0)
+		{
+			free(datas->environ[i]);
+			datas->environ[i] = cat_keyval(key, val);
+			datas->envsize += 1;
+
+			free(var);
+			return;
+		}
+		free(var);
+	}
+
+	datas->environ = realloc_da(datas->environ, i, i + 2);
+	datas->environ[i] = cat_keyval(key, val);
+	datas->environ[i + 1] = NULL;
+	datas->envsize += 1;
+}
+
+/**
+ * rev_str - revert string
+ * @s: the string
+ * Return: nothing
+ */
+
+void rev_str(char *s)
+{
+	int count = 0, i, j;
+	char *str, temp;
+
+	count = _strlen(s);
+	str = s;
+
+	for (i = 0; i < (count - 1); i++)
+	{
+		for (j = i + 1; j > 0; j--)
+		{
+			temp = *(str + j);
+			*(str + j) = *(str + (j - 1));
+			*(str + (j - 1)) = temp;
+		}
+	}
 }

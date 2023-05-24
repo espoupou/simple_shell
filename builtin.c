@@ -6,13 +6,14 @@
  * Return: status 0 or 1
  */
 
-int (*builtin_handler(char *input))(data *datas)
+int (*builtin_handler(char *input))(data * datas)
 {
 	builtin builtins[] = {
 		{"exit", __exit},
 		{"env", __env},
 		{"setenv", __setenv},
 		{"unsetenv", __unsetenv},
+		{"cd", __cd},
 		{NULL, NULL}
 		};
 	int i;
