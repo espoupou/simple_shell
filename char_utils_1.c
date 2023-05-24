@@ -99,7 +99,7 @@ unsigned int _strspn(char *s, char *accept)
 {
 	unsigned int i = 0;
 
-	while (s[i] && strchr(accept, s[i]))
+	while (s[i] && _strchr(accept, s[i]))
 		i++;
 
 	return (i);
