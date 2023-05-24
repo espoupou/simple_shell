@@ -28,6 +28,9 @@ char *_clean(char *input)
 
 	for (p = input; *p != '\n' && *p != '\0'; p++)
 		;
+
+	if (p == input)
+		return (NULL);
 	*p = '\0';
 
 	return (input);
@@ -73,9 +76,6 @@ int parse_args(char *input, data *datas)
 
 	datas->args[i] = NULL;
 
-/*	for (--i; i + 1; i--)
-		printf("%s:\n", datas->args[i]);
-*/
 	return (1);
 }
 
@@ -95,8 +95,6 @@ void shell_loop(data *datas)
 	while (loop)
 	{
 		write(STDIN_FILENO, ":)$ ", 4);
-
-		/* size = get_cmd(&input); */
 		size = _getline(datas);
 
 		if (size == 0)
@@ -105,15 +103,12 @@ void shell_loop(data *datas)
 			free(datas->input);
 			continue;
 		}
-
 		input = _clean(datas->input);
-/*
-		datas->input = input;
-		datas->args[0] = input;
-
-		token = strtok(datas->input, " ");
-		i = 0; */
-
+		if (!input)
+		{
+			free(input);
+			continue;
+		}
 		loop = parse_args(input, datas);
 		if (loop == 0)
 		{
@@ -125,7 +120,6 @@ void shell_loop(data *datas)
 			loop = f(datas);
 		else
 			loop = _exec(datas);
-
 		free(input);
 	}
 }

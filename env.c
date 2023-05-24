@@ -80,19 +80,15 @@ int __unsetenv(data *datas)
 	int i, j, k;
 
 	if (datas->args[1] == NULL)
-	{
 		return (1);
-	}
 
 	for (i = 0; datas->environ[i]; i++)
 	{
 		var = malloc(sizeof(char) * (_strlen(datas->environ[i]) + 1));
 		_strcpy(var, datas->environ[i]);
-
 		if (_strcmp(strtok(var, "="), datas->args[1]) == 0)
 		{
 			free(var);
-
 			env = malloc(sizeof(char *) * datas->envsize - 1);
 			if (env == NULL)
 				return (0);
@@ -150,5 +146,5 @@ char *_getenv(char *key, data *datas)
 		j++; /* skip the equal sign */
 		return (datas->environ[i] + j);
 	}
-	return NULL;
+	return (NULL);
 }

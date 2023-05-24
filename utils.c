@@ -12,8 +12,7 @@ int _putchar(char c)
 }
 
 /**
- * cat_keyenv - create env string "key=val"
- * @env: env var pointer
+ * cat_keyval - create env string "key=val"
  * @key: key
  * @val: value
  * Return: pointer to string
@@ -34,6 +33,7 @@ char *cat_keyval(char *key, char *val)
 
 /**
  * _setenv - get env val pointer by key
+ * @datas: datas
  * @key: the key
  * @val: the val
  * Return: o if not the key and val position if is key
@@ -56,12 +56,12 @@ void _setenv(data *datas, char *key, char *val)
 			datas->envsize += 1;
 
 			free(var);
-			return ;
+			return;
 		}
 		free(var);
 	}
 
-	datas->environ = realloc_da(datas->environ, i, i+2);
+	datas->environ = realloc_da(datas->environ, i, i + 2);
 	datas->environ[i] = cat_keyval(key, val);
 	datas->environ[i + 1] = NULL;
 	datas->envsize += 1;

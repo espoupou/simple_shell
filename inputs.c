@@ -2,7 +2,7 @@
 
 /**
  * _getline - get inputed line
- * @input: the input pointer
+ * @datas: datas
  * Return: the size
  */
 

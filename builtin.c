@@ -6,7 +6,7 @@
  * Return: status 0 or 1
  */
 
-int (*builtin_handler(char *input))(data *datas)
+int (*builtin_handler(char *input))(data * datas)
 {
 	builtin builtins[] = {
 		{"exit", __exit},

@@ -11,12 +11,21 @@ int __cd(data *datas)
 	if (datas->args[1] == NULL)
 	{
 		cd_home(datas);
+		return (1);
 	}
 
 	if (_strcmp(datas->args[1], "-") == 0)
 	{
 		cd_prev(datas);
+		return (1);
 	}
+
+	if (_strcmp(datas->args[1], ".") == 0 || _strcmp(datas->args[1], ".."))
+	{
+		cd_dot(datas);
+		return (1);
+	}
+
 	return (1);
 }
 
@@ -78,4 +87,15 @@ void cd_prev(data *datas)
 	}
 
 	write(STDOUT_FILENO, "\n", 1);
+}
+
+/**
+ * cd_dot - cd to parent or current dir
+ * @datas: datas
+ * Return: nothing
+ */
+
+void cd_dot(data *datas)
+{
+	UNUSED(datas);
 }

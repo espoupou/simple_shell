@@ -93,5 +93,6 @@ char *_getenv(char *key, data *datas);
 int __cd(data *datas);
 void cd_home(data *datas);
 void cd_prev(data *datas);
+void cd_dot(data *datas);
 
 #endif
