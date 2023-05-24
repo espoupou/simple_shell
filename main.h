@@ -10,9 +10,6 @@
 #include <sys/wait.h>
 #include <limits.h>
 
-/* temporar include */
-#include <string.h>
-
 /* Poinngs called the "environment" */
 extern char **environ;
 
@@ -49,7 +46,6 @@ typedef struct builtin
 } builtin;
 
 /* shell_loop.c */
-int get_cmd(char **input);
 char *_clean(char *input);
 int parse_args(char *input, data *datas);
 void shell_loop(data *datas);
@@ -71,10 +67,15 @@ char *_strncpy(char *dest, char *src, int n);
 char *_strcat(char *dest, char *src);
 
 /* char_utilis_1.c: */
-char *_strdup(char *s);
+char *_strdup(const char *s);
+int _charchk(char str[], const char *delim);
+char *_strtok(char str[], const char *delim);
+char *_strchr(char *s, char c);
+unsigned int _strspn(char *s, char *accept);
 
 /* mem_utils.c: memory manipulation utilities */
 char **realloc_da(char **p, int old_size, int new_size);
+char *_memcpy(char *dest, const char *src, unsigned int n);
 
 /* inputs.c: get user input utilities */
 int _getline(data *datas);
