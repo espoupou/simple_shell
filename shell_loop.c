@@ -57,7 +57,7 @@ int parse_args(char *input, data *datas)
 	while (*arg_start != '\0')
 	{
 		arg_start += strspn(arg_start, " \t");
-		arg_end = strchr(arg_start, ' ');
+		arg_end = _strchr(arg_start, ' ');
 
 		if (arg_end == NULL)
 			arg_end = arg_start + strlen(arg_start);
