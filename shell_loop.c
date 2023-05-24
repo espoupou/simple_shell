@@ -56,7 +56,7 @@ int parse_args(char *input, data *datas)
 	i = 0;
 	while (*arg_start != '\0')
 	{
-		arg_start += strspn(arg_start, " \t");
+		arg_start += _strspn(arg_start, " \t");
 		arg_end = _strchr(arg_start, ' ');
 
 		if (arg_end == NULL)
@@ -70,7 +70,7 @@ int parse_args(char *input, data *datas)
 		memcpy(datas->args[i], arg_start, arg_end - arg_start);
 
 		datas->args[i][arg_end - arg_start] = '\0';
-		arg_start = arg_end + strspn(arg_end, " \t");
+		arg_start = arg_end + _strspn(arg_end, " \t");
 		i++;
 	}
 
