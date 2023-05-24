@@ -44,7 +44,7 @@ int parse_args(char *input, data *datas)
 		arg_end = _strchr(arg_start, ' ');
 
 		if (arg_end == NULL)
-			arg_end = arg_start + strlen(arg_start);
+			arg_end = arg_start + _strlen(arg_start);
 
 		datas->args = realloc_da(datas->args, (i + 1), (i + 2));
 		if (datas->args == NULL)
