@@ -88,6 +88,8 @@ void cd_prev(data *datas)
 		write(STDOUT_FILENO, oldpwd, _strlen(oldpwd));
 	}
 
+	if (oldpwd != pwd)
+		free(oldpwd);
 	write(STDOUT_FILENO, "\n", 1);
 	datas->status = 0;
 }
