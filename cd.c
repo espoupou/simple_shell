@@ -59,7 +59,7 @@ void cd_home(data *datas)
 }
 
 /**
- * cd_prev ) cd to previous directory
+ * cd_prev - cd to previous directory
  * @datas: datas
  * Return : nothing
  */

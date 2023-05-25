@@ -11,7 +11,6 @@ int _exec(data *datas)
 	pid_t pid;
 	int state, exec;
 	char *dir;
-/*	char *environ[] = { NULL }; */
 
 	exec = is_executable(datas);
 	if (exec == -1)
@@ -97,7 +96,7 @@ int is_executable(data *datas)
 /**
  * _which - locate cmd
  * @cmd: command
- * @_environ: enrivon
+ * @datas: datas
  * Return: path
  */
 
