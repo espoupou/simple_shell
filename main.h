@@ -54,6 +54,7 @@ typedef struct builtin
 char *_clean(char *input);
 int parse_args(char *input, data *datas);
 void shell_loop(data *datas);
+void free_args(data *datas);
 
 /* _exec.c: execution heart */
 int _exec(data *datas);
@@ -125,4 +126,5 @@ char *error_get_cd(data *datas);
 
 /* _sigint.c: ^C escape */
 void _sigint(int sig);
+
 #endif

@@ -33,6 +33,8 @@ int parse_args(char *input, data *datas)
 	char *arg_start, *arg_end;
 
 	datas->input = input;
+
+	free_args(datas);
 	datas->args = malloc(sizeof(char *)); /* end array value space : NULL space */
 	datas->args[0] = input;
 
@@ -50,7 +52,7 @@ int parse_args(char *input, data *datas)
 		if (datas->args == NULL)
 			return (0);
 
-		datas->args[i] = malloc(sizeof(char) * (arg_end - arg_start));
+		datas->args[i] = malloc(sizeof(char) * (arg_end - arg_start) + 1);
 		_memcpy(datas->args[i], arg_start, arg_end - arg_start);
 
 		datas->args[i][arg_end - arg_start] = '\0';
@@ -61,6 +63,24 @@ int parse_args(char *input, data *datas)
 	datas->args[i] = NULL;
 
 	return (1);
+}
+
+/**
+ * free_args - free args
+ * @datas: datas
+ * Return: nothing
+ */
+
+void free_args(data *datas)
+{
+	int i;
+
+	if (!datas->args)
+		return;
+
+	for (i = 0; datas->args[i]; i++)
+		free(datas->args[i]);
+	free(datas->args);
 }
 
 /**
