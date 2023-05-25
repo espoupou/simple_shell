@@ -97,7 +97,7 @@ int is_executable(data *datas)
 /**
  * _which - locate cmd
  * @cmd: command
- * @_environ: enrivon
+ * @datas: datas
  * Return: path
  */
 

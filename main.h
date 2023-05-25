@@ -21,6 +21,8 @@ extern char **environ;
  * @args: input command in array
  * @environ: env variable
  * @envsize: @environ size
+ * @status: last status of the shell
+ * @counter: lines counter
  * Description: we need shell program name for handling errors
  * also put input here to minimize functions parameters
  */
