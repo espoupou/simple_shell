@@ -124,3 +124,20 @@ char *_getenv(char *key, data *datas)
 	}
 	return (NULL);
 }
+
+/**
+ * free_env - frees data structure
+ * @datas: data
+ * Return: no return
+ */
+void freeenv(data *datas)
+{
+	unsigned int i;
+
+	for (i = 0; datas->environ[i]; i++)
+	{
+		free(datas->environ[i]);
+	}
+
+	free(datas->environ);
+}
