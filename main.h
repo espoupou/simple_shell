@@ -123,4 +123,6 @@ char *error_exit_shell(data *datas);
 /* error_handler_1.c: handle error */
 char *error_get_cd(data *datas);
 
+/* _sigint.c: ^C escape */
+void _sigint(int sig);
 #endif
