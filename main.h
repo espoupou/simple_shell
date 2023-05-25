@@ -9,6 +9,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <limits.h>
+#include <sys/stat.h>
 
 /* Poinngs called the "environment" */
 extern char **environ;
@@ -31,6 +32,8 @@ typedef struct data
 	char **args;
 	char **environ;
 	int envsize;
+	int status;
+	int counter;
 } data;
 
 /**
@@ -52,6 +55,10 @@ void shell_loop(data *datas);
 
 /* _exec.c: execution heart */
 int _exec(data *datas);
+int is_executable(data *datas);
+char *_which(char *cmd, data *datas);
+int is_cdir(char *path, int *i);
+int check_error_cmd(char *dir, data *datas);
 
 /* utils.c: utilities */
 int _putchar(char c);
@@ -60,7 +67,7 @@ void _setenv(data *datas, char *key, char *val);
 void rev_str(char *s);
 
 /* char_utils.c: char functions utilities */
-int _strlen(char *s);
+int _strlen(const char *s);
 int _strcmp(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
 char *_strncpy(char *dest, char *src, int n);
@@ -72,6 +79,12 @@ int _charchk(char str[], const char *delim);
 char *_strtok(char str[], const char *delim);
 char *_strchr(char *s, char c);
 unsigned int _strspn(char *s, char *accept);
+
+/* char_utils_2.c */
+char *_itoa(int n);
+int get_len(int n);
+int _atoi(char *s);
+int _isdigit(const char *s);
 
 /* mem_utils.c: memory manipulation utilities */
 char **realloc_da(char **p, int old_size, int new_size);
@@ -96,5 +109,15 @@ int __cd(data *datas);
 void cd_home(data *datas);
 void cd_prev(data *datas);
 void cd_dot(data *datas);
+
+/* error_handler.c: handle error */
+int get_error(data *datas, int eval);
+char *error_env(data *datas);
+char *error_path_126(data *datas);
+char *error_not_found(data *datas);
+char *error_exit_shell(data *datas);
+
+/* error_handler_1.c: handle error */
+char *error_get_cd(data *datas);
 
 #endif

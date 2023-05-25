@@ -46,7 +46,7 @@ int __env(data *datas)
 		write(STDOUT_FILENO, datas->environ[i], _strlen(datas->environ[i]));
 		write(STDOUT_FILENO, "\n", 1);
 	}
-
+	datas->status = 0;
 	return (1);
 }
 
