@@ -12,7 +12,7 @@ char *_clean(char *input)
 
 	for (p = input; *p != '\n' && *p != '\0'; p++)
 		;
-	while(p != input && *(p - 1) == ' ')
+	while ((p != input) && (*(p - 1) == ' '))
 		p--;
 
 	if (p == input)
