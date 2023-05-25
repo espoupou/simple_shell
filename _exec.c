@@ -45,6 +45,7 @@ int _exec(data *datas)
 		} while (!WIFEXITED(state) && !WIFSIGNALED(state));
 	}
 
+	datas->status = state / 256;
 	return (1);
 }
 
