@@ -26,6 +26,7 @@ int __cd(data *datas)
 		return (1);
 	}
 
+	cd_to(datas);
 	return (1);
 }
 

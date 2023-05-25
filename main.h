@@ -113,6 +113,7 @@ int __cd(data *datas);
 void cd_home(data *datas);
 void cd_prev(data *datas);
 void cd_dot(data *datas);
+void cd_to(data *datas);
 
 /* error_handler.c: handle error */
 int get_error(data *datas, int eval);
