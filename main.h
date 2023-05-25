@@ -98,13 +98,14 @@ int _getline(data *datas);
 /* buildin.c: buildin functions - extend to env.c, cd.c */
 int (*builtin_handler(char *input))(data *datas);
 int __exit(data *datas);
+int __env(data *datas);
 
 /* env.c: buildin env functions */
 void init_env(data *datas);
-int __env(data *datas);
 int __setenv(data *datas);
 int __unsetenv(data *datas);
 char *_getenv(char *key, data *datas);
+void free_env(data *datas);
 
 /* cd.c: buidin cd functions */
 int __cd(data *datas);
