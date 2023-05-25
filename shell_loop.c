@@ -88,7 +88,7 @@ void shell_loop(data *datas)
 			continue;
 		}
 		input = _clean(datas->input);
-		if (!input)
+		if (!input || _strlen(input) == 0)
 		{
 			free(input);
 			continue;

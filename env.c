@@ -36,7 +36,7 @@ int __setenv(data *datas)
 {
 	if (datas->args[1] == NULL || datas->args[2] == NULL)
 	{
-		printf("err setenv\n");
+		get_error(datas, -1);
 		return (1);
 	}
 
@@ -56,7 +56,10 @@ int __unsetenv(data *datas)
 	int i, j, k;
 
 	if (datas->args[1] == NULL)
+	{
+		get_error(datas, -1);
 		return (1);
+	}
 
 	for (i = 0; datas->environ[i]; i++)
 	{
@@ -89,7 +92,7 @@ int __unsetenv(data *datas)
 		free(var);
 	}
 
-	printf("err unsetenv\n");
+	get_error(datas, -1);
 	return (1);
 }
 

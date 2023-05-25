@@ -50,7 +50,7 @@ void cd_home(data *datas)
 
 	if (chdir(home) == -1)
 	{
-		printf("err cd home\n");
+		get_error(datas, 2);
 		return;
 	}
 	_setenv(datas, "OLDPWD", pwd);

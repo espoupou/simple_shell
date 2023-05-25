@@ -21,7 +21,7 @@ int _getline(data *datas)
 		size = read(STDIN_FILENO, &c, 1);
 		if (size == 0)
 		{
-			_putchar('\n');
+	/*		_putchar('\n'); */
 			return (0);
 		}
 
