@@ -51,3 +51,26 @@ int __exit(data *datas)
 	}
 	return (0);
 }
+
+/**
+ * __env - print environment
+ * @datas: datas
+ * Return: always 1
+ */
+
+int __env(data *datas)
+{
+	int i, len;
+
+	for (i = 0; datas->environ[i]; i++)
+	{
+
+		for (len = 0; datas->environ[i][len]; len++)
+			;
+
+		write(STDOUT_FILENO, datas->environ[i], _strlen(datas->environ[i]));
+		write(STDOUT_FILENO, "\n", 1);
+	}
+	datas->status = 0;
+	return (1);
+}
