@@ -33,4 +33,6 @@ void shell_loop(data *datas);
 /* _exec.c */
 void _exec(data *datas);
 
+/* _sigint.c: ^C escape */
+void _sigint(int sig);
 #endif
