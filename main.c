@@ -13,6 +13,7 @@ int main(int ac, char **av)
 	(void) ac;
 
 	datas.av = av;
+	datas.counter = 1;
 	init_env(&datas);
 	shell_loop(&datas);
 

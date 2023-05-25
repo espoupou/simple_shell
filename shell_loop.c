@@ -104,6 +104,7 @@ void shell_loop(data *datas)
 			loop = f(datas);
 		else
 			loop = _exec(datas);
+		datas->counter += 1;
 		free(input);
 	}
 }
