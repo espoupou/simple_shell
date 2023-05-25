@@ -25,6 +25,8 @@ int _getline(data *datas)
 			return (0);
 		}
 
+		if (i == 0 && c == ' ')
+			continue;
 		if (i > 255)
 		{
 			/* realloc space */
