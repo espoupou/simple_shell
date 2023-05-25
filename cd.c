@@ -71,9 +71,11 @@ void cd_prev(data *datas)
 
 	getcwd(pwd, sizeof(pwd));
 
-	oldpwd = _strdup(_getenv("OLDPWD", datas));
+	oldpwd = _getenv("OLDPWD", datas);
 	if (oldpwd == NULL)
 		oldpwd = pwd;
+
+	oldpwd = _strdup(oldpwd);
 
 	_setenv(datas, "OLDPWD", pwd);
 
@@ -88,8 +90,7 @@ void cd_prev(data *datas)
 		write(STDOUT_FILENO, oldpwd, _strlen(oldpwd));
 	}
 
-	if (oldpwd != pwd)
-		free(oldpwd);
+	free(oldpwd);
 	write(STDOUT_FILENO, "\n", 1);
 	datas->status = 0;
 }
