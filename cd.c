@@ -135,3 +135,36 @@ void cd_dot(data *datas)
 	free(_pwd);
 	datas->status = 0;
 }
+
+/**
+ * cd_to - changes to a directory
+ * @datash: data relevant (directories)
+ * Return: no return
+ */
+void cd_to(data *datas)
+{
+	char pwd[PATH_MAX];
+	char *dir, *cp_pwd, *cp_dir;
+
+	getcwd(pwd, sizeof(pwd));
+
+	dir = datas->args[1];
+	if (chdir(dir) == -1)
+	{
+		get_error(datas, 2);
+		return;
+	}
+
+	cp_pwd = _strdup(pwd);
+	_setenv(datas, "OLDPWD", cp_pwd);
+
+	cp_dir = _strdup(dir);
+	_setenv(datas, "PWD", cp_dir);
+
+	free(cp_pwd);
+	free(cp_dir);
+
+	datas->status = 0;
+
+	chdir(dir);
+}

@@ -60,7 +60,6 @@ int __unsetenv(data *datas)
 		get_error(datas, -1);
 		return (1);
 	}
-
 	for (i = 0; datas->environ[i]; i++)
 	{
 		var = malloc(sizeof(char) * (_strlen(datas->environ[i]) + 1));
@@ -82,7 +81,6 @@ int __unsetenv(data *datas)
 				}
 			}
 			env[k] = NULL;
-
 			free(datas->environ);
 			datas->environ = env;
 			datas->envsize--;
@@ -91,7 +89,6 @@ int __unsetenv(data *datas)
 		}
 		free(var);
 	}
-
 	get_error(datas, -1);
 	return (1);
 }
