@@ -110,6 +110,7 @@ void shell_loop(data *datas)
 		input = _clean(datas->input);
 		if (!input || _strlen(input) == 0)
 		{
+			free(datas->input);
 			free(input);
 			continue;
 		}
