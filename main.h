@@ -83,6 +83,8 @@ unsigned int _strspn(char *s, char *accept);
 /* char_utils_2.c */
 char *_itoa(int n);
 int get_len(int n);
+int _atoi(char *s);
+int _isdigit(const char *s);
 
 /* mem_utils.c: memory manipulation utilities */
 char **realloc_da(char **p, int old_size, int new_size);

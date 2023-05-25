@@ -55,6 +55,7 @@ void cd_home(data *datas)
 	}
 	_setenv(datas, "OLDPWD", pwd);
 	_setenv(datas, "PWD", home);
+	datas->status = 0;
 }
 
 /**
@@ -87,6 +88,7 @@ void cd_prev(data *datas)
 	}
 
 	write(STDOUT_FILENO, "\n", 1);
+	datas->status = 0;
 }
 
 /**
@@ -131,4 +133,5 @@ void cd_dot(data *datas)
 	chdir("/");
 	_setenv(datas, "PWD", "/");
 	free(_pwd);
+	datas->status = 0;
 }
