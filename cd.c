@@ -138,7 +138,7 @@ void cd_dot(data *datas)
 
 /**
  * cd_to - changes to a directory
- * @datash: data relevant (directories)
+ * @datas: datas
  * Return: no return
  */
 void cd_to(data *datas)
