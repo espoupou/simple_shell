@@ -30,7 +30,7 @@ int _exec(data *datas)
 		else
 			dir = datas->args[0];
 
-		execve(dir, datas->args, environ);
+		execve(dir, datas->args, datas->environ);
 		perror(datas->av[0]);
 		exit(0);
 	}
