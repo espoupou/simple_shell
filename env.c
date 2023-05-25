@@ -130,7 +130,7 @@ char *_getenv(char *key, data *datas)
  * @datas: data
  * Return: no return
  */
-void freeenv(data *datas)
+void free_env(data *datas)
 {
 	unsigned int i;
 
