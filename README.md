@@ -10,9 +10,8 @@ Write a UNIX command line interpreter.
 ## 2. Simple shell 0.2
 Handle command lines with arguments
 
-## 3. Simple shell 0.3
+## 3. Simple shell 0.3 #bug
 Handle the PATH
-fork must not be called if the command doesn’t exist
 
 ## 4. Simple shell 0.4
 Implement the exit built-in, that exits the shell
