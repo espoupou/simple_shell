@@ -32,10 +32,11 @@ char *realloc_a(char *p, int old_size, int new_size)
 	if (n == NULL)
 		return (NULL);
 
+	_memset(n, '\0', new_size);
 	if (new_size < old_size)
-		_memcpy(n, p, new_size);
+		_strncpy(n, p, new_size);
 	else
-		_memcpy(n, p, old_size);
+		_strncpy(n, p, old_size);
 	free(p);
 
 	return (n);

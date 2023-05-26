@@ -31,7 +31,6 @@ char *_clean(char *input)
 		return (NULL);
 	*p = '\0';
 
-printf("%s-\n", input);
 	return (input);
 }
 

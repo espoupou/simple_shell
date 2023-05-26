@@ -12,26 +12,29 @@ int _getline(data *datas)
 {
 	static char *buffer = NULL;
 	static int index = BUF_SIZE;
-	char buf[BUF_SIZE];
+	char buf[BUF_SIZE] = "\0";
 	int size = 0, i = BUF_SIZE + 1, count = 0;
 	char *input = NULL;
+	int loop = 1;
 
 	if (size == 0 && index >= (BUF_SIZE - 1))
 	{
 		index = 0;
-		_memset(buf, '\0', BUF_SIZE);
-		while (i >= BUF_SIZE)
+		while (loop)
 		{
-			i = read(STDIN_FILENO, buf, BUF_SIZE + 1);
+			_memset(buf, 0, BUF_SIZE + 1);
+			i = read(STDIN_FILENO, buf, BUF_SIZE);
 			buffer = realloc_a(buffer, size, size + i + 1);
 			size += i;
-
 			_strcat(buffer, buf);
+
+			if (buf[i - 1] == '\n')
+				loop = 0;
 		}
 
 		buffer[size] = '\0';
 /*		_clean(buffer);*/
-printf("buffer %s -\n", buffer);
+
 	}
 
 	if (index <= BUF_SIZE && buffer[index] != '\0')
@@ -58,7 +61,7 @@ printf("buffer %s -\n", buffer);
 
 	if (count == 0 && input != NULL && *input != EOF)
 		count++;
-printf("%s - %d\n\n", input, count);
+
 	return (count);
 }
 
