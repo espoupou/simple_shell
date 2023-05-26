@@ -120,7 +120,8 @@ void shell_loop(data *datas)
 		if (size == 0)
 		{
 			loop = 0;
-			free(datas->input);
+	/*		if (datas->input);
+				free(datas->input); */
 			continue;
 		}
 		input = _clean(datas->input);

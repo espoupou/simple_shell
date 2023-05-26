@@ -31,7 +31,7 @@ int _getline(data *datas)
 
 		buffer[size] = '\0';
 /*		_clean(buffer);*/
-printf("buffer %s - ", buffer);
+printf("buffer %s -\n", buffer);
 	}
 
 	if (index <= BUF_SIZE && buffer[index] != '\0')
@@ -55,6 +55,9 @@ printf("buffer %s - ", buffer);
 		}
 		datas->input = input;
 	}
+
+	if (count == 0 && input != NULL && *input != EOF)
+		count++;
 printf("%s - %d\n\n", input, count);
 	return (count);
 }

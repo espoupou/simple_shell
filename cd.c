@@ -113,11 +113,15 @@ void cd_dot(data *datas)
 	if (_strcmp(datas->args[1], ".") == 0)
 	{
 		_setenv(datas, "PWD", pwd);
+		free(_pwd);
 		return;
 	}
 
 	if (_strcmp(_pwd, "/") == 0)
+	{
+		free(_pwd);
 		return;
+	 }
 
 	p = _pwd;
 	rev_str(p);
