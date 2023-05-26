@@ -94,6 +94,7 @@ char **realloc_da(char **p, int old_size, int new_size);
 char *_memcpy(char *dest, const char *src, unsigned int n);
 char *_memset(char *s, char b, unsigned int n);
 char *realloc_a(char *p, int old_size, int new_size);
+char *_mem_skipn_cpy(char *dest, const char *src, unsigned int n);
 
 /* inputs.c: get user input utilities */
 int _getline(data *datas);

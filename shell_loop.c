@@ -14,7 +14,10 @@ char *_clean(char *input)
 	for (p = input; *p == ' '; p++)
 		;
 	if (p != input)
-		_memcpy(input, p, _strlen(p));
+	{
+		_memcpy(input, p, _strlen(p) + 1);
+/*		_mem_skipn_cpy(input, p, p - input - 1);*/
+	}
 
 	/* go to end */
 	for (p = input; *p != '\n' && *p != '\0'; p++)
@@ -27,6 +30,8 @@ char *_clean(char *input)
 	if (p == input)
 		return (NULL);
 	*p = '\0';
+
+printf("%s-\n", input);
 	return (input);
 }
 

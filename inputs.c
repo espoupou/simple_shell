@@ -23,7 +23,6 @@ int _getline(data *datas)
 		while (i >= BUF_SIZE)
 		{
 			i = read(STDIN_FILENO, buf, BUF_SIZE + 1);
-
 			buffer = realloc_a(buffer, size, size + i + 1);
 			size += i;
 
@@ -31,6 +30,7 @@ int _getline(data *datas)
 		}
 
 		buffer[size] = '\0';
+/*		_clean(buffer);*/
 printf("buffer %s - ", buffer);
 	}
 
@@ -49,6 +49,7 @@ printf("buffer %s - ", buffer);
 		if (buffer[index] == '\0')
 		{
 			free(buffer);
+			buffer = NULL;
 			size = 0;
 			index = BUF_SIZE;
 		}

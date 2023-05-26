@@ -12,11 +12,17 @@ char *realloc_a(char *p, int old_size, int new_size)
 {
 	char *n;
 
-	if (p == NULL)
+	if (!p)
 	{
 		n = malloc(sizeof(char) * new_size);
 		_memset(n, '\0', new_size);
 		return (n);
+	}
+
+	if (new_size == 0)
+	{
+		free(p);
+		return (NULL);
 	}
 
 	if (old_size == new_size)
@@ -25,8 +31,11 @@ char *realloc_a(char *p, int old_size, int new_size)
 	n = malloc(sizeof(char) * new_size);
 	if (n == NULL)
 		return (NULL);
-/*	_memset(n, '\0', new_size);*/
-	_memcpy(n, p, old_size);
+
+	if (new_size < old_size)
+		_memcpy(n, p, new_size);
+	else
+		_memcpy(n, p, old_size);
 	free(p);
 
 	return (n);
@@ -100,4 +109,25 @@ char *_memset(char *s, char b, unsigned int n)
 	}
 
 	return (s);
+}
+
+/**
+ * _mem_skipn_cpy - copy src to dest but skip n first byte
+ * @dest: destination memory aeria pointer
+ * @src: source memory aeria pointer
+ * @n: number of byte
+ * Return: pointer to dest
+ */
+
+char *_mem_skipn_cpy(char *dest, const char *src, unsigned int n)
+{
+	unsigned int i;
+
+        for (i = 0; src[i + n]; i++)
+        {
+                dest[i] = *(src + i);
+        }
+
+	dest[i] = '\0';
+        return (dest);
 }
