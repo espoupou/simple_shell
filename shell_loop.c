@@ -10,15 +10,23 @@ char *_clean(char *input)
 {
 	char *p;
 
+	/* remove beginning spaces */
+	for (p = input; *p == ' '; p++)
+		;
+	if (p != input)
+		_memcpy(input, p, _strlen(p));
+
+	/* go to end */
 	for (p = input; *p != '\n' && *p != '\0'; p++)
 		;
+
+	/* remove ending spaces */
 	while ((p != input) && (*(p - 1) == ' '))
 		p--;
 
 	if (p == input)
 		return (NULL);
 	*p = '\0';
-
 	return (input);
 }
 
@@ -38,6 +46,7 @@ int parse_args(char *input, data *datas)
 
 	free_args(datas);
 	datas->args = malloc(sizeof(char *)); /* end array value space : NULL space */
+/*printf("%s\n", input);*/
 	datas->args[0] = input;
 
 	arg_start = input;

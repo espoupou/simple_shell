@@ -1,6 +1,34 @@
 #include "main.h"
 
 /**
+ * realloc_a - realloc for char array
+ * @p: pointer to array
+ * @old_size: old size
+ * @new_size: new size
+ * Return: pointer to allocatedd space
+ */
+
+char *realloc_a(char *p, int old_size, int new_size)
+{
+	char *n;
+
+	if (p == NULL)
+		return (malloc(sizeof(char) * new_size));
+
+	if (old_size == new_size)
+		return (p);
+
+	n = malloc(sizeof(char) * new_size);
+	if (n == NULL)
+		return (NULL);
+	_memset(n, 0, new_size);
+	_memcpy(n, p, old_size);
+	free(p);
+
+	return (n);
+}
+
+/**
  * realloc_da - relloc for char double dim array
  * @p: pointer to array
  * @old_size: old size
@@ -48,4 +76,24 @@ char *_memcpy(char *dest, const char *src, unsigned int n)
 	}
 
 	return (dest);
+}
+
+/**
+ * _memset - fills memory with a constant byte
+ * @s: memory aeria
+ * @b: the byte
+ * @n: number of byte
+ * Return: s adress
+ */
+
+char *_memset(char *s, char b, unsigned int n)
+{
+	char *p;
+
+	for (p = s; p - s < n; p++)
+	{
+		*p = b;
+	}
+
+	return (s);
 }
