@@ -42,16 +42,16 @@ int _getline(data *datas)
 		input = malloc((sizeof(char) * BUF_SIZE));
 		if (input == NULL)
 			return (0);
+		_memset(input, 0, BUF_SIZE);
 
 		while (buffer[index] != '\n' && buffer[index] != '\0')
 		{
 			if (count >= BUF_SIZE - 1)
-		{
-printf("%d\n", count);
+			{
 				input = realloc_a(input, count, count + 2);
 				if (input == NULL)
 					return (0);
-}
+			}
 			input[count++] = buffer[index++];
 		}
 		input[count] = '\0';
@@ -66,6 +66,7 @@ printf("%d\n", count);
 			index = BUF_SIZE;
 		}
 		datas->input = input;
+printf("\n\n%s\n\n", input);
 	}
 
 	if (count == 0 && input != NULL && *input != EOF)
