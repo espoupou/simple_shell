@@ -13,7 +13,11 @@ char *realloc_a(char *p, int old_size, int new_size)
 	char *n;
 
 	if (p == NULL)
-		return (malloc(sizeof(char) * new_size));
+	{
+		n = malloc(sizeof(char) * new_size);
+		_memset(n, '\0', new_size);
+		return (n);
+	}
 
 	if (old_size == new_size)
 		return (p);
@@ -21,7 +25,7 @@ char *realloc_a(char *p, int old_size, int new_size)
 	n = malloc(sizeof(char) * new_size);
 	if (n == NULL)
 		return (NULL);
-	_memset(n, 0, new_size);
+/*	_memset(n, '\0', new_size);*/
 	_memcpy(n, p, old_size);
 	free(p);
 

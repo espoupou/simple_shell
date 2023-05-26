@@ -19,6 +19,7 @@ int _getline(data *datas)
 	if (size == 0 && index >= (BUF_SIZE - 1))
 	{
 		index = 0;
+		_memset(buf, '\0', BUF_SIZE);
 		while (i >= BUF_SIZE)
 		{
 			i = read(STDIN_FILENO, buf, BUF_SIZE + 1);
@@ -30,6 +31,7 @@ int _getline(data *datas)
 		}
 
 		buffer[size] = '\0';
+printf("buffer %s - ", buffer);
 	}
 
 	if (index <= BUF_SIZE && buffer[index] != '\0')
@@ -44,8 +46,15 @@ int _getline(data *datas)
 
 		if (buffer[index] != '\0')
 			index = index + 1;
+		if (buffer[index] == '\0')
+		{
+			free(buffer);
+			size = 0;
+			index = BUF_SIZE;
+		}
+		datas->input = input;
 	}
-	datas->input = input;
+printf("%s - %d\n\n", input, count);
 	return (count);
 }
 
