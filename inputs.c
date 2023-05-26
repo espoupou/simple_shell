@@ -45,10 +45,12 @@ int _getline(data *datas)
 
 		while (buffer[index] != '\n' && buffer[index] != '\0')
 		{
-			if (count >= BUF_SIZE)
+			if (count >= BUF_SIZE - 1)
 		{
 printf("%d\n", count);
 				input = realloc_a(input, count, count + 2);
+				if (input == NULL)
+					return (0);
 }
 			input[count++] = buffer[index++];
 		}
