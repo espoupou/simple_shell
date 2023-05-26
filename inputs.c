@@ -1,6 +1,6 @@
 #include "main.h"
 
-#define BUF_SIZE 256
+#define BUF_SIZE 5000
 
 /**
  * _getline - get inputed line
@@ -34,7 +34,7 @@ int _getline(data *datas)
 
 		buffer[size] = '\0';
 /*		_clean(buffer);*/
-
+printf("\n\n%s - %d\n\n", buffer, size);
 	}
 
 	if (index <= BUF_SIZE && buffer[index] != '\0')
