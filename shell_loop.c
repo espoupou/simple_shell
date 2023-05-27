@@ -14,11 +14,10 @@ char *_clean(char *input)
 		if (*p == '#')
 		{
 			if (p == input)
-			{
-				free(input);
 				return (NULL);
-			}
-			*p = '\0';
+			if (*(p - 1) != ' ' && *(p - 1) != '\t')
+				continue;
+			*(p - 1) = '\0';
 			break;
 		}
 
