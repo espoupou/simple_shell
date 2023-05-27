@@ -18,7 +18,7 @@ char *_clean(char *input)
 				free(input);
 				return (NULL);
 			}
-			*p = '\0'
+			*p = '\0';
 			break;
 		}
 
