@@ -25,7 +25,7 @@ int _getline(data *datas)
 			return (0);
 		}
 
-		if (i == 0 && c == ' ')
+		if (i == 0 && (c == ' ' || c == '\t'))
 			continue;
 		if (i > 255)
 		{

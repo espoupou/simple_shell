@@ -21,7 +21,7 @@ char *_clean(char *input)
 			break;
 		}
 
-	while ((p != input) && (*(p - 1) == ' '))
+	while ((p != input) && (*(p - 1) == ' ' || *(p - 1) == '\t'))
 		p--;
 
 	if (p == input)
