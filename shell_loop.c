@@ -116,6 +116,7 @@ void shell_loop(data *datas)
 			free(input);
 			continue;
 		}
+		input = rep_var(input, datas);
 		loop = parse_args(input, datas);
 		if (loop == 0)
 		{
