@@ -93,7 +93,7 @@ void rev_str(char *s);
 /* utils_1.c */
 r_var *add_rvar_node(r_var **head, int lvar, char *val, int lval);
 void free_rvar_list(r_var **head);
-int isspases(char *input);
+int isspaces(char *input);
 
 /* char_utils.c: char functions utilities */
 int _strlen(const char *s);
