@@ -23,6 +23,7 @@ extern char **environ;
  * @envsize: @environ size
  * @status: last status of the shell
  * @counter: lines counter
+ * @pid: main program pid
  * Description: we need shell program name for handling errors
  * also put input here to minimize functions parameters
  */
@@ -36,6 +37,7 @@ typedef struct data
 	int envsize;
 	int status;
 	int counter;
+	char *pid;
 } data;
 
 /**
@@ -49,6 +51,23 @@ typedef struct builtin
 	char *name;
 	int (*f)(data *datas);
 } builtin;
+
+/**
+ * struct r_var_l - single linked list
+ * @len_var: length of the variable
+ * @val: value of the variable
+ * @len_val: length of the value
+ * @next: next node
+ * Description: single linked list to store variables
+ */
+
+typedef struct r_var_l
+{
+	int len_var;
+	char *val;
+	int len_val;
+	struct r_var_l *next;
+} r_var;
 
 /* shell_loop.c */
 char *_clean(char *input);
@@ -68,6 +87,10 @@ int _putchar(char c);
 char *cat_keyval(char *key, char *val);
 void _setenv(data *datas, char *key, char *val);
 void rev_str(char *s);
+
+/* utils_1.c */
+r_var *add_rvar_node(r_var **head, int lvar, char *val, int lval);
+void free_rvar_list(r_var **head);
 
 /* char_utils.c: char functions utilities */
 int _strlen(const char *s);
@@ -127,5 +150,8 @@ char *error_get_cd(data *datas);
 
 /* _sigint.c: ^C escape */
 void _sigint(int sig);
+
+/* var_replace.c */
+char *rep_var(char *input, data *datas);
 
 #endif
