@@ -77,3 +77,30 @@ char *error_get_cd(data *datas)
 
 	return (error);
 }
+
+/**
+ * error_open_stream -  error message for stream opening
+ * @datas: datas
+ * Return: error message
+ */
+
+char *error_open_stream(data *datas)
+{
+	int length;
+	char *error;
+
+	length = _strlen(datas->av[0]);
+	length += _strlen(datas->av[1]) + 17;
+	error = malloc(sizeof(char) * (length + 1));
+	if (error == 0)
+	{
+		free(error);
+		return (NULL);
+	}
+	_strcpy(error, datas->av[0]);
+	_strcat(error, ": 0: Can't open ");
+	_strcat(error, datas->av[1]);
+	_strcat(error, "\n\0");
+
+	return (error);
+}

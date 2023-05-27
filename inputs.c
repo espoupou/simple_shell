@@ -18,7 +18,7 @@ int _getline(data *datas)
 
 	while (c != '\n' && c != EOF)
 	{
-		size = read(STDIN_FILENO, &c, 1);
+		size = read(fileno(datas->stream), &c, 1);
 		if (size == 0)
 		{
 	/*		_putchar('\n'); */

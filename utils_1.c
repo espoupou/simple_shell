@@ -58,3 +58,19 @@ void free_rvar_list(r_var **head)
 		*head = NULL;
 	}
 }
+
+/**
+ * isspaces - isspaces
+ * @input: input
+ * Return: 0 or 1
+ */
+
+int isspases(char *input)
+{
+	char *p = input;
+
+	for (p = input; *p == ' '; p++)
+		;
+
+	return (*p == '\0');
+}
