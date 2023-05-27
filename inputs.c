@@ -1,6 +1,6 @@
 #include "main.h"
 
-#define BUF_SIZE 5000
+#define BUF_SIZE 1024
 
 /**
  * _getline - get inputed line
@@ -11,14 +11,17 @@
 int _getline(data *datas)
 {
 	static char *buffer = NULL;
-	static int index = BUF_SIZE;
+	static int index = BUF_SIZE, test = 0;
 	char buf[BUF_SIZE] = "\0";
 	int size = 0, i = BUF_SIZE + 1, count = 0;
 	char *input = NULL;
 	int loop = 1;
 
-	if (size == 0 && index >= (BUF_SIZE - 1))
+/*printf("gitline %d - %d\n", isatty(STDIN_FILENO), size);*/
+	if (size == 0 && (isatty(STDIN_FILENO) || !test))
 	{
+/*printf("--\n");*/
+		test = 1;
 		index = 0;
 		while (loop)
 		{
@@ -34,10 +37,10 @@ int _getline(data *datas)
 
 		buffer[size] = '\0';
 /*		_clean(buffer);*/
-printf("\n\n%s - %d\n\n", buffer, size);
+/*printf("\n\n%s - %d\n\n", buffer, size);*/
 	}
-
-	if (index <= BUF_SIZE && buffer[index] != '\0')
+/*printf("\n strip\n");*/
+	if (index <= size && buffer && buffer[index] != '\0')
 	{
 		input = malloc((sizeof(char) * BUF_SIZE));
 		if (input == NULL)
@@ -60,13 +63,16 @@ printf("\n\n%s - %d\n\n", buffer, size);
 			index = index + 1;
 		if (buffer[index] == '\0')
 		{
+/*printf("freeing - %d\n", size);*/
 			free(buffer);
 			buffer = NULL;
 			size = 0;
+			if(!isatty(STDIN_FILENO))
+				size = 1;
 			index = BUF_SIZE;
 		}
 		datas->input = input;
-printf("\n\n%s\n\n", input);
+/*printf("\n\n%s\n\n", input);*/
 	}
 
 	if (count == 0 && input != NULL && *input != EOF)

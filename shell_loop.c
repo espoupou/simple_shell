@@ -30,7 +30,7 @@ char *_clean(char *input)
 	if (p == input)
 		return (NULL);
 	*p = '\0';
-
+/*printf("%s-\n", input);*/
 	return (input);
 }
 
