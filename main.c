@@ -19,10 +19,27 @@ int main(int ac, char **av)
 	datas.counter = 1;
 	datas.status = 0;
 	datas.pid = _itoa(getpid());
+	datas.stream = NULL;
 
-	init_env(&datas);
-	shell_loop(&datas);
-	free_env(&datas);
+	if (ac == 1)
+		datas.stream = stdin;
+	else
+	{
+		datas.stream = fopen(av[1], "r");
+		if (datas.stream == NULL)
+		{
+			datas.status = 127;
+			datas.input = error_open_stream(&datas);
+			write(STDERR_FILENO, datas.input, _strlen(datas.input));
+		}
+	}
+
+	if (datas.stream)
+	{
+		init_env(&datas);
+		shell_loop(&datas);
+		free_env(&datas);
+	}
 
 	free_args(&datas);
 	free(datas.pid);

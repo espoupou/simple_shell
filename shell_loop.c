@@ -109,7 +109,8 @@ void shell_loop(data *datas)
 
 	while (loop)
 	{
-		write(STDIN_FILENO, ":)$ ", 4);
+		if (datas->stream == stdin)
+			write(STDIN_FILENO, ":)$ ", 4);
 		size = _getline(datas);
 
 		if (size == 0)

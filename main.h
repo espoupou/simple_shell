@@ -24,6 +24,7 @@ extern char **environ;
  * @status: last status of the shell
  * @counter: lines counter
  * @pid: main program pid
+ * @stream: the input stream
  * Description: we need shell program name for handling errors
  * also put input here to minimize functions parameters
  */
@@ -38,6 +39,7 @@ typedef struct data
 	int status;
 	int counter;
 	char *pid;
+	FILE *stream;
 } data;
 
 /**
@@ -91,6 +93,7 @@ void rev_str(char *s);
 /* utils_1.c */
 r_var *add_rvar_node(r_var **head, int lvar, char *val, int lval);
 void free_rvar_list(r_var **head);
+int isspases(char *input);
 
 /* char_utils.c: char functions utilities */
 int _strlen(const char *s);
@@ -147,7 +150,7 @@ char *error_exit_shell(data *datas);
 
 /* error_handler_1.c: handle error */
 char *error_get_cd(data *datas);
-
+char *error_open_stream(data *datas);
 /* _sigint.c: ^C escape */
 void _sigint(int sig);
 
