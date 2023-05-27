@@ -65,7 +65,7 @@ void free_rvar_list(r_var **head)
  * Return: 0 or 1
  */
 
-int isspases(char *input)
+int isspaces(char *input)
 {
 	char *p = input;
 
