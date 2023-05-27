@@ -53,7 +53,7 @@ typedef struct builtin
 } builtin;
 
 /**
- * struct r_var_list - single linked list
+ * struct r_var_l - single linked list
  * @len_var: length of the variable
  * @val: value of the variable
  * @len_val: length of the value

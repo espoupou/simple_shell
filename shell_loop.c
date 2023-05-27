@@ -11,7 +11,17 @@ char *_clean(char *input)
 	char *p;
 
 	for (p = input; *p != '\n' && *p != '\0'; p++)
-		;
+		if (*p == '#')
+		{
+			if (p == input)
+			{
+				free(input);
+				return (NULL);
+			}
+			*p = '\0'
+			break;
+		}
+
 	while ((p != input) && (*(p - 1) == ' '))
 		p--;
 
